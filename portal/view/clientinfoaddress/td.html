@@ -1,0 +1,10 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.id}</td>
+
+<td>{$vo.title|high_light=$Request.param.title}</td>
+<td>{$vo.tp|get_address_tp}</td>
+<td>{$vo.defaultadd|get_default}</td>
+<td>{$vo.remark}</td>
+
+<td>{$vo.status|get_status}</td>
+

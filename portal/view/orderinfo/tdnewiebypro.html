@@ -1,0 +1,26 @@
+
+<td>{$vo.id}</td>
+<td>{$vo.create_time}</td>
+<td>{$vo.protitle}</td>
+<td>{$vo.winstatus|get_win_status}</td>
+<td>{$vo.depositstatus|get_deposit_status}</td>
+
+
+
+<td>
+{if $vo.winstatus eq 1}
+	{if $vo.depositstatus eq 0}
+	
+	
+		<a class="btn " href="javascript:;" onclick="layer_open('提取收益','{:\\think\\Url::build('Orderinfo/extractionnewiebypro',['proid'=>$vo.proid,'orderid'=>$vo.id])}')">提取收益 </a>
+						
+	{/if}
+
+
+	
+
+
+{/if}
+
+
+</td>

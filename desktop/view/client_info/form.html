@@ -1,0 +1,15 @@
+<form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    
+    <input type="text" class="input-text" style="width:250px" placeholder="姓名" name="nm" value="{$Request.param.nm}">
+<input type="text" class="input-text" style="width:250px" placeholder="妮称" name="nickname" value="{$Request.param.nickname}">
+实名状态
+ <select name="substatus">
+					<option value="0"  {if $Request.param.substatus eq 0}selected{/if}>末实名
+					<option value="1" {if $Request.param.substatus eq 1}selected{/if}>实名申请
+					<option value="2" {if $Request.param.substatus eq 2}selected{/if}>实名完成
+					<option value="3" {if $Request.param.substatus eq 3}selected{/if}>实名失败
+  </select>
+
+
+      <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>

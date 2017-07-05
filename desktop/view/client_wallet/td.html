@@ -1,0 +1,15 @@
+<td><input type="checkbox" name="id[]" value="{$vo.id}"></td>
+<td>{$vo.id}</td>
+
+<td>{$vo.account|high_light=$Request.param.account}</td>
+
+<td>{$vo.nm|high_light=$Request.param.nm}</td>
+
+<td>{$vo.totalamount}</td>
+<td>{$vo.title}</td>
+
+
+<td>{$vo.update_time}</td>
+<td>{$vo.realname}</td>
+<td>{$vo.status|get_status}</td>
+

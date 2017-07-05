@@ -1,0 +1,24 @@
+<hr><br><br>
+<span class=pro>
+	<ul>
+		<li>{$vo.id}
+		
+		{$prosort_parent.title}<a href="{:\\think\\Url::build('Proinfo/index',['proid'=>$vo.id])}"></a>
+		
+		</li>
+		<li>{$vo.title}</li>
+		<li>{$vo.quan}</li>
+		<li>{$vo.price}</li>
+		<li> 
+
+
+ <a href="javascript:;" onclick="simpleCart.add({maxnum:'{$vo.quan}',name:'{$vo.title}', price: {$vo.price},size:'tiny',thumb:'e.png',ids:'{$vo.id}'});" >add</a>
+
+ 
+ 
+ </li>
+	</ul>
+</span>
+
+
+

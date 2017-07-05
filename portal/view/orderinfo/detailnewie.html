@@ -1,0 +1,74 @@
+{extend name="template/base" /}
+{block name="nav"}{/block}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <div class="row cl"><ul>
+			<li>订单号：{$orderinfo.id}</li>
+			<li>{$orderinfo.title}</li>
+			<li>{$orderinfo.substatus}</li>
+			<li>{$orderinfo.totalamount}</li>
+			<li>{$orderinfo.remark}</li>
+			<li>{$orderinfo.status}</li>
+			<li>{$orderinfo.create_time}</li>
+			<li><a href="{:\\think\\Url::build('Orderinfo/extractionnewie',['orderid'=>$orderinfo.id])}">提取</a></li>
+		
+			
+        </ul>
+					
+
+
+
+
+        </div><hr>
+	 <div class="row cl">
+			{volist name="orderdetailinfo" id="vo"}
+					<ul>
+						<li>{$vo.id}
+						{if $vo.substatus eq 1}
+							提取了<font color=red>{$vo.price*$vo.quan}</font>
+						{
+						else
+						}
+						
+								{if $vo.resultstatus eq 0}末开{/if} {if $vo.resultstatus eq 1} 赢 <font color=red>{$vo.price*$vo.quan}</font>
+								
+								
+								
+								{/if} {if $vo.resultstatus eq 2}输{/if}
+						
+						{/if}
+						</li>
+						<li>产品号：{$vo.proid}</li>
+						<li>产品标题：{$vo.title}</li>
+						<li>产品价格：{$vo.price}</li>
+						<li>产品价格：{$vo.newprice}</li>
+						<li>购买数量：{$vo.quan}</li>
+						<li></li>
+						
+						
+					</ul>
+					<hr>
+			 {/volist}
+	 </div>
+
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+        $("#form").Validform({
+            tiptype:2,
+            ajaxPost:true,
+            showAllError:true,
+            callback:function(ret){
+                ajax_progress(ret);
+            }
+        });
+		 
+
+    })
+</script>
+{/block}

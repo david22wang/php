@@ -1,0 +1,43 @@
+<hr><br><br>
+<span class=pro>
+	<ul>
+		<li>{$proinfo.id}
+		
+		<a href="{:\\think\\Url::build('Proinfo/index',['proid'=>$proinfo.id])}">{$proinfo.title}</a>
+		
+		</li>
+		<li>{$proinfo.title}</li>
+		<li>{$proinfo.quan}</li>
+		<li>{$proinfo.price}</li>
+		<li> 
+
+ <a href="javascript:;" onclick="simpleCart.add({maxnum:'{$proinfo.quan}',name:'{$proinfo.title}', price: {$proinfo.price},size:'tiny',thumb:'e.png',ids:'{$proinfo.id}'});" >add</a>
+ 
+ 
+ 
+ </li>
+	</ul>
+	<hr>
+	 {volist name="proPromotion" id="vo"}
+		
+		<li>{$vo.remark}</li>
+
+         <Li>开始时间：{$vo.bgtime}</li>
+		  <Li>结束时间：{$vo.endtime}</li>
+		  <Li>新价格：{$vo.price}</li>
+		  <Li>旧价格：{$vo.oldprice}</li>
+
+<Li>
+<hr>
+
+ <a href="javascript:;" onclick="simpleCart.add({maxnum:'{$proinfo.quan}',name:'{$proinfo.title}', price: {$vo.price},size:'tiny',thumb:'e.png',ids:'{$proinfo.id}'});" >add</a>
+
+ </li>
+        </option>
+       
+	   {/volist}
+
+</span>
+
+
+

@@ -1,0 +1,35 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    
+  
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            {include file="th" /}
+           
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+          
+
+
+<th width="100" height=100 remark="{$vo.remark}" id="{$vo.id}">
+{$vo.title}
+</th> </tr>
+ <tr class="text-c">
+<th width="100"><a href="{:\\think\\Url::build('Clientwalletdetail/index',['id'=>$vo.id])}" title="明细">{$vo.totalamount}</a></th>
+
+           
+				
+				
+          
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+   
+</div>
+{/block}

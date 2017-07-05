@@ -1,0 +1,57 @@
+{extend name="template/base" /}
+{block name="nav"}{/block}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+      <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>团队名：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" value=""   placeholder="只能是字母" name="title"  nullmsg="请填写" errormsg="只能是字母">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		 <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>团队注册码：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" value=""   placeholder="只能是字母" name="code"  nullmsg="" errormsg="姓名只能是字母">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		 <div class="row c1">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red"></span>备注：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                 <textarea class="textarea" placeholder="" name="remark" onKeyUp="textarealength(this,100)"></textarea>
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+       
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;成立&nbsp;&nbsp;</button>
+               
+            </div>
+        </div>
+		
+		
+
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+        $("#form").Validform({
+            tiptype:2,
+            ajaxPost:true,
+            showAllError:true,
+            callback:function(ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}

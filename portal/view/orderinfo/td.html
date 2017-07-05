@@ -1,0 +1,32 @@
+
+<td>{$vo.id}</td>
+<td>{$vo.create_time}</td>
+
+<td>{$vo.substatus|get_pay_status}</td>
+<td>{$vo.status|get_order_status}</td>
+
+
+
+<td>
+{if $vo.status eq 1}
+	{if $vo.substatus eq 0}
+	
+	<a href="{:\\think\\Url::build('Orderinfo/detailnewie',['orderid'=>$vo.id])}" title="明细">明细</a>
+	<a href="{:\\think\\Url::build('Orderinfo/forbid',['orderid'=>$vo.id])}" title="关闭订单">关闭订单</a>
+	{/if}
+
+
+	
+
+	{if $vo.substatus eq 1 }
+	
+
+	<a href="{:\\think\\Url::build('Orderinfo/detailnewie',['orderid'=>$vo.id])}" title="明细">明细</a>
+	{/if}
+{/if}
+{if $vo.status eq 0}
+	<a href="{:\\think\\Url::build('Orderinfo/detailnewie',['orderid'=>$vo.id])}" title="明细">明细</a>
+
+{/if}
+
+</td>

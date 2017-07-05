@@ -1,0 +1,55 @@
+{extend name="template/base" /}
+{block name="nav"}{/block}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"></label>
+            <div class="formControls col-xs-6 col-sm-6">
+               成为把总
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+	
+       
+
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;申请&nbsp;&nbsp;</button>
+               
+            </div>
+        </div>
+		 <div class="row cl">申请记录：
+           
+			 {volist name="list" id="vo"}
+					<ul>
+						<li>申请时间：{$vo.create_time}</li>
+						<li>申请状态：{if $vo.substatus eq 0}申请中{/if}{if $vo.substatus eq 1}成功{/if}{if $vo.substatus eq 2}失败{/if}</li>
+						<li>状态：{if $vo.substatus eq 1}正常{/if}{if $vo.substatus eq 0}关闭{/if}</li>
+
+					</ul>
+					
+        
+			  {/volist}
+
+        </div>
+		
+
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+        $("#form").Validform({
+            tiptype:2,
+            ajaxPost:true,
+            showAllError:true,
+            callback:function(ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}

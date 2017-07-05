@@ -1,0 +1,208 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>simpleCart(js) - QUnit Test Suite</title>  
+    <link rel="stylesheet" href="css/qunit.css" type="text/css" media="screen">  
+
+
+<script src="inc/jquery.1.6.1.min.js"></script>
+	<script src="../simpleCart.js"></script>
+	<style >
+
+	 	.itemContainer{
+			width:100%;
+			float:left;
+		}
+
+		.itemContainer div{
+			float:left;
+			margin: 5px 20px 5px 20px ;
+		}
+
+		.itemContainer a{
+			text-decoration:none;
+		}
+
+		.cartHeaders{
+			width:100%;
+			float:left;
+		}
+
+		.cartHeaders div{
+			float:left;
+			margin: 5px 20px 5px 20px ;
+		}
+		table{
+		
+		
+		border:1px solid #ADD8E6; }
+			tr{
+		
+		border:1px solid #ADD8E6; }
+
+			td{
+		
+		
+		border:1px solid #ADD8E6; }
+
+		 a{
+			text-decoration:none;
+		}
+
+
+	</style>
+
+
+</head>  
+<body>  
+	
+	<h1 id="qunit-header">QUnit Test Suite</h1>  
+    <h2 id="qunit-banner"></h2>  
+    <div id="qunit-testrunner-toolbar"></div>  
+    <h2 id="qunit-userAgent"></h2>  
+    <ol id="qunit-tests"></ol>
+	
+	<p>
+	Cart: <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
+	<br />
+	<a href="javascript:;" class="simpleCart_empty">empty cart</a>
+	<br />
+	</p>
+
+
+	<ul>
+		
+<ul>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'101221',name:'baby lion1', price: 0,size:'tiny',thumb:'e.png'});" >add to cart PRICE 0</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'00002',name:'baby lion2', price: 0.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'x2223',name:'baby lion3', price: 1.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'f33334',name:'baby lion4', price: 2.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'444445',name:'baby lion5', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'622222',name:'baby lion6', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'2sssd7',name:'baby lion7', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'ssss338',name:'baby lion8', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'f433339',name:'baby lion9', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'10',name:'baby lion10', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	<li><a href="javascript:;" onclick="simpleCart.add({maxnum:10,id:'12',name:'baby lion11', price: 34.95,size:'tiny',thumb:'e.png'});" >add to cart</a></li>
+	
+</ul>
+
+
+		
+
+	</ul>
+
+	<div class="simpleCart_items" >
+	</div>
+
+
+
+
+	<br />
+	-----------------------------<br />
+	
+	<a href="javascript:;" class="simpleCart_checkout">checkout</a>	
+	
+	<div id="test_id"></div>
+    <script type="text/javascript">
+    <!--
+	var cart=simpleCart({
+	
+	// array representing the format and columns of the cart, see 
+	// the cart columns documentation
+	cartColumns: [
+		{ attr: "id" , label: "产品号" },
+		{ attr: "name" , label: "产品" },
+		{ attr: "price" , label: "价格"},
+		{ view: "decrement" , label: false },
+		{ attr: "quantity" , label: "数量" },
+		{ view: "increment" , label: false },
+		{ attr: "total" , label: "总价" },
+		{ attr: "maxnum" , label: "最大数量" },
+		{ view: "remove" , text: "删除" , label: false }
+		
+		
+	],
+	
+	// "div" or "table" - builds the cart as a table or collection of divs
+	cartStyle: "table", 
+	
+	// how simpleCart should checkout, see the checkout reference for more info 
+	checkout: { 
+      
+        },
+	
+	// set the currency, see the currency reference for more info
+	currency: "JPY",
+	
+	// collection of arbitrary data you may want to store with the cart, 
+	// such as customer info
+	data: {},
+	
+	// set the cart langauge (may be used for checkout)
+	language: "zh-cn",
+	
+	// array of item fields that will not be sent to checkout
+	excludeFromCheckout: [],
+	
+	// custom function to add shipping cost
+	shippingCustom: null,
+	
+	// flat rate shipping option
+	shippingFlatRate: 0,
+	
+	// added shipping based on this value multiplied by the cart quantity
+	shippingQuantityRate: 0,
+	
+	// added shipping based on this value multiplied by the cart subtotal
+	shippingTotalRate: 0,
+	
+	// tax rate applied to cart subtotal
+	taxRate: 0,
+	
+	// true if tax should be applied to shipping
+	taxShipping: false,
+	
+	// event callbacks 
+	beforeAdd				: null,
+	afterAdd				: null,
+	load					: null,
+	beforeSave				: null,
+	afterSave				: null,
+	update					: null,
+	ready					: null,
+	checkoutSuccess				: null,
+	checkoutFail				: null,
+	beforeCheckout				: null
+});
+
+
+
+		
+    //-->
+    </script>
+
+
+</body>  	
+
+<a href="javascript:;" onclick=" st();" >get cart data</a>
+<hr>
+<a href="javascript:;" onclick="alert(simpleCart.currency().toString());" >getCurrencies</a>
+CollectFormData
+
+</html>
+<script type="text/javascript">
+<!--
+	function st()
+	{
+	var t=simpleCart.CollectFormData();
+	for(var i=0;i<t.length;i++)
+		{
+		alert(t[i].id());	
+		alert(t[i].quantity());	
+		}
+	
+	
+	}
+//-->
+</script>

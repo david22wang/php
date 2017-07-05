@@ -1,0 +1,24 @@
+<form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    
+    <input type="text" class="input-text" style="width:250px" placeholder="帐号" name="account" value="{$Request.param.account}">
+
+	钱包分类：
+	<select name="moneytp">
+	<option value=></option>
+			{volist name="moneytp" id="vos"}
+			<option value="{$vos.id}" {if $Request.param.moneytp eq $vos.id}selected{/if}>{$vos.title}</option>
+
+			 {/volist}
+	</select>
+	明细状态
+		<select name="status">
+			<option value=></option>
+			
+			<option value="1" {if $Request.param.status eq "1"}selected{/if}>正常</option>
+			<option value="0" {if $Request.param.status eq "0"}selected{/if}>失败</option>
+			 
+	</select>
+
+
+      <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>

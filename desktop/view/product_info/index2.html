@@ -1,0 +1,48 @@
+{extend name="template/base" /}
+{block name="content"}
+<div class="page-container">
+    {include file='form' /}
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+           {$Request.param.fid|show_buttonmenubyadd=$Request.param.fid}  
+        </span>
+        <span class="r pt-5 pr-5">
+          当前产品分类：{$sortlist.title}  当前产品分类号：<b>{$sortlist.id}</b> 共有数据 ：<strong>{$count}</strong> 条
+        </span>
+    </div>
+    <table class="table table-border table-bordered table-hover table-bg mt-20">
+        <thead>
+        <tr class="text-c">
+            {include file="th2" /}
+            <th width="150">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist name="list" id="vo"}
+        <tr class="text-c">
+            {include file="td2" /}
+            <td class="f-14">
+			     
+   
+
+               {tp:menu menu='sedit,xcopy' /}
+			   {if $sortlist.title eq "积分组合"}
+				{$vo.id|show_button_productinfo_group=$vo.id}
+				{/if}
+				{if $sortlist.title eq "交易组合"}
+				{$vo.id|show_button_productinfo_group=$vo.id}
+				{/if}
+
+				{$vo.id|show_button_productinfo_rule=$vo.id}
+             
+				{$vo.id|show_button_productinfo_promotion=$vo.id}
+				
+				
+            </td>
+        </tr>
+        {/volist}
+        </tbody>
+    </table>
+    <div class="page-bootstrap">{$page}</div>
+</div>
+{/block}

@@ -1,0 +1,26 @@
+<hr><br><br>
+<span class=pro>
+	<ul>
+		<li>产品号：{$vo.id}
+		
+		<a href="{:\\think\\Url::build('Proinfo/index',['proid'=>$vo.id])}"></a>
+		
+		</li>
+		<li>产品标题：{$vo.title}</li>
+		<li>库存：{$vo.quan}</li>
+		<li>现价：{$vo.price}
+		
+		</li>
+		<li> 
+ <a href="javascript:;" onclick="simpleCart.add({maxnum:'{$vo.quan}',name:'{$vo.title}', price: '{$vo.price}',size:'tiny',thumb:'e.png',proid:'{$vo.id}'});" >买</a>
+
+
+
+ 
+ 
+ </li>
+	</ul>
+</span>
+
+
+

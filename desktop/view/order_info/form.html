@@ -1,0 +1,15 @@
+<form class="mb-20" method="get" action="{:\\think\\Url::build($Request.action)}">
+    
+    <input type="text" class="input-text" style="width:250px" placeholder="订单号" name="orderid" value="{$Request.param.orderid}">
+
+	<select name="ordertp">
+		<option value="0" {if $Request.param.ordertp eq "0"}selected{/if}>不分类
+		<option value="1"  {if $Request.param.ordertp eq "1"}selected{/if}>实物订单
+		<option value="2" {if $Request.param.ordertp eq "2"}selected{/if}>积分订单
+		<option value="3" {if $Request.param.ordertp eq "3"}selected{/if}>电子订单
+		<option value="4" {if $Request.param.ordertp eq "4"}selected{/if}>4
+	</select>
+
+
+      <button type="submit" class="btn btn-success" id="" name=""><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+</form>

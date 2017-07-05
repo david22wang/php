@@ -1,0 +1,32 @@
+
+{extend name="template/base" /}
+{block name="content"}
+
+
+<script type="text/javascript" src="__LIB__/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__LIB__/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="__STATIC__/h-ui/js/H-ui.js"></script>
+
+
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__LIB__/simplecart/simpleCart.1.js"></script>
+<div class="page-container">
+    
+  
+	
+
+
+	
+
+
+      {include file='template/shopcartnewie' /}
+        {volist name="list" id="vo"}
+       
+            {include file="newtd" /}
+           
+        
+        {/volist}
+     
+   
+</div>
+{/block}

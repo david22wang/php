@@ -1,0 +1,130 @@
+{extend name="template/base" /}
+{block name="nav"}{/block}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        
+		 <input type="hidden" name="proid" value="{$Request.param.fid}">
+		<input type="hidden" name="promo_tp" value="quan">
+
+
+
+
+		<div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>标题：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="text" class="input-text" value=""   placeholder="只能是标题" name="title"  nullmsg="请填写标题" errormsg="姓名只能是字母">
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		
+
+		<div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>会员：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <select name="customtp">
+					<option value=0>全部</option>
+				 {volist name="custom" id="lswallet"}
+					
+					<option value="{$lswallet.id}">{$lswallet.title}</option>
+				  
+				  {/volist}
+				
+				</select>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+
+		<div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red">*</span>优惠条件：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                <input type="hidden" class="input-text" value=""   placeholder="只能是标题" name="ruletitle"  nullmsg="请填写标题" errormsg="姓名只能是字母">
+				 <input type="text" class="input-text" value=""   placeholder="前置条件" name="precondition"  >
+
+				<select name="preconditiontag">
+					
+					<option value="3">大于等于
+					
+				</select>
+				<input type="text" class="input-text" value=""   placeholder="结果" name="dis_result"  >
+				<select name="dis_resultoption">
+					<option value="1">单价直减
+					<option value="2">总价直减
+					
+				</select>
+				<select name="dis_resulttag">
+					<option value="1">比率
+					<option selected value="2">直减
+					<option value="3">礼品
+				</select>
+				<input type="text" class="input-text" value=""   placeholder="礼品号" name="giftid"  >
+			
+			
+			
+			</div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		 <div class="row cl">
+            <label class="form-label col-xs-3 col-sm-3">状态：</label>
+            <div class="formControls col-xs-6 col-sm-6 skin-minimal">
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-1" value="1" datatype="*" nullmsg="请选择状态">
+                    <label for="status-1">启用</label>
+                </div>
+                <div class="radio-box">
+                    <input type="radio" name="status" id="status-0" value="0">
+                    <label for="status-0">禁用</label>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+      </div>
+
+		 <div class="row c1">
+            <label class="form-label col-xs-3 col-sm-3"><span class="c-red"></span>备注：</label>
+            <div class="formControls col-xs-6 col-sm-6">
+                 <textarea class="textarea" placeholder="" name="remark" onKeyUp="textarealength(this,100)"></textarea>
+                <p class="textarea-numberbar"><em class="textarea-length">0</em>/100</p>
+
+            </div>
+            <div class="col-xs-3 col-sm-3"></div>
+        </div>
+		
+	
+	
+
+   
+
+        
+		<div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                <button type="submit" class="btn btn-primary radius">&nbsp;&nbsp;提交&nbsp;&nbsp;</button>
+                <button type="button" class="btn btn-default radius ml-20" onClick="layer_close();">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+        $("[name='status'][value='{$vo.status ?? '1'}']").attr("checked",true);
+
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+
+        $("#form").Validform({
+            tiptype:2,
+            ajaxPost:true,
+            showAllError:true,
+            callback:function(ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}

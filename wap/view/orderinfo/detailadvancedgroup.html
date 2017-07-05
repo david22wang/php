@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+       <meta charset="utf-8">
+   
+	<link rel="Bookmark" href="__ROOT__/favicon.ico" >
+    <link rel="Shortcut Icon" href="__ROOT__/favicon.ico" />
+ 
+
+    <title>任务区 - {$Think.config.site.title}</title>
+    <meta name="keywords" content="{$Think.config.site.keywords}">
+    <meta name="description" content="{$Think.config.site.keywords}">
+
+
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="format-detection" content="telephone=no">
+	  <meta name="renderer" content="webkit">
+	  <meta http-equiv="Cache-Control" content="no-siteapp" />
+	
+	  <link rel="stylesheet" href="__STATIC__/css/amazeui.min.css"/>
+	  	<!--[if lt IE 9]>
+		<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+		<script src="__STATIC__/js/amazeui.ie8polyfill.min.js"></script>
+		<![endif]-->
+
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<!--<![endif]-->
+		<script src="__STATIC__/js/amazeui.min.js"></script>
+
+
+
+</head>
+<body>
+
+
+<ul class="am-nav am-nav-pills">
+  <li class="am-active"><a href="{:\\think\\Url::build('index/index','')}">首页</a></li>
+ 
+</ul>
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+        <div class="row cl"><ul>
+			<li>订单号{$orderinfo.id}</li>
+			<li>{$orderinfo.title}</li>
+			<li>{$orderinfo.substatus}</li>
+			<li>{$orderinfo.totalamount}</li>
+			<li>{$orderinfo.status}</li>
+			<li>{$orderinfo.create_time}</li>
+			
+			
+        </ul>
+					
+
+
+
+
+        </div><hr>
+	 <div class="row cl">
+			{volist name="orderdetailinfo" id="vo"}
+					<ul>
+						<li>{$vo.id}
+						
+						</li>
+						<li>{$vo.proid}</li>
+						<li>{$vo.protitle}</li>
+						<li>{$vo.price}</li>
+						<li>{$vo.newprice}</li>
+						<li>{$vo.quan}</li>
+						<li>{$vo.title}</li>
+						
+						<li>当前日期：{$arrdate.year}-{$arrdate.mon}-{$arrdate.mday}
+						<li>订单日期：{$orderinfo.create_time}</li>
+					
+				
+						<table>
+						<tr>
+							<td>
+						<ul>
+						{if $arrdate.mon eq 1}
+							{for start="1" end="32"  step="1" }
+							
+							
+							
+							<a href={:\\think\\Url::build('Orderinfo/extractionadvancedgroup',['proid'=>$vo.proid,'orderid'=>$orderinfo.id,'dy'=>$arrdate.year-1,'dm'=>1,'dd'=>$i])}>{$arrdate.year-1}-1-{$i}</a>
+							
+							</li>
+						
+							{/for}
+						</ul>
+						{else}
+
+					
+						<ul>
+						
+							{for start="1" end="32"  step="1" }
+							
+							
+							<li>
+							
+							<a  href={:\\think\\Url::build('Orderinfo/extractionadvancedgroup',['proid'=>$vo.proid,'orderid'=>$orderinfo.id,'dy'=>$arrdate.year,'dm'=>$arrdate.mon-1,'dd'=>$i])}>{$arrdate.year}-{$arrdate.mon-1}-{$i} </a>
+							
+							</li>
+
+							
+							{/for}
+						</ul>
+
+
+
+						{/if}
+						<hr></td>
+							<td>	<ul>
+
+						{for start="1" end="32"  step="1" }
+							
+							<li>
+							
+							<a href={:\\think\\Url::build('Orderinfo/extractionadvancedgroup',['proid'=>$vo.proid,'orderid'=>$orderinfo.id,'dy'=>$arrdate.year,'dm'=>$arrdate.mon,'dd'=>$i])}>{$arrdate.year}-{$arrdate.mon}-{$i}</a>
+							
+							</li>
+						
+						{/for}
+						</ul>
+						<hr></td>
+						<td valign=top>
+							<ul>
+							{volist name="moneyrecord" id="moneyr"}
+									
+								<li>{$moneyr.dy}-{$moneyr.dm}-{$moneyr.dd}提取{$moneyr.price}</li>
+							{/volist}
+							</ul>
+						
+						
+						</td>
+						</tr>
+						</table>
+
+
+						
+						</li>
+					</ul>
+					<hr>
+			 {/volist}
+	 </div>
+
+    </form>
+</div>

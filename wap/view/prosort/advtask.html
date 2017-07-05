@@ -1,0 +1,74 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+       <meta charset="utf-8">
+   
+	<link rel="Bookmark" href="__ROOT__/favicon.ico" >
+    <link rel="Shortcut Icon" href="__ROOT__/favicon.ico" />
+ 
+
+    <title>任务区 - {$Think.config.site.title}</title>
+    <meta name="keywords" content="{$Think.config.site.keywords}">
+    <meta name="description" content="{$Think.config.site.keywords}">
+
+
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="format-detection" content="telephone=no">
+	  <meta name="renderer" content="webkit">
+	  <meta http-equiv="Cache-Control" content="no-siteapp" />
+	
+	  <link rel="stylesheet" href="__STATIC__/css/amazeui.min.css"/>
+	  	<!--[if lt IE 9]>
+		<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+		<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+		<script src="__STATIC__/js/amazeui.ie8polyfill.min.js"></script>
+		<![endif]-->
+
+		<!--[if (gte IE 9)|!(IE)]><!-->
+		<!--<![endif]-->
+		<script src="__STATIC__/js/amazeui.min.js"></script>
+
+
+
+</head>
+<body>
+<ul class="am-nav am-nav-pills">
+  <li class="am-active"><a href="{:\\think\\Url::build('index/index','')}">首页</a></li>
+ 
+</ul>
+<form class="am-form" action="{:\\think\\Url::build('Orderinfo/advanced','')}">
+<ul class="am-list am-list-static am-list-border">
+  {volist name="list" id="vo"}
+  <li>
+    <i class="am-icon-home am-icon-fw"></i>
+   
+	 <div class="am-checkbox">
+      <label>
+        <input type="checkbox" name="" value="{$vo.id}"> {$vo.title}<code>{$vo.price}</code>
+      </label> 
+	  <label>
+        库存 <code>{$vo.quan}</code>
+      </label>
+    </div>
+	<div class="am-form-group am-form-select">
+	 <a href="javascript:;" onclick="simpleCart.add({maxnum:'{$vo.quan}',name:'{$vo.title}', price: '{$vo.price}',size:'tiny',thumb:'e.png',ids:'{$vo.id}'});" >买</a>
+
+	</div>
+	
+	</li>
+  <li>
+    
+</ul>
+ {/volist}
+
+ <script type="text/javascript" src="__LIB__/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script type="text/javascript" src="__LIB__/simplecart/simpleCart.js"></script>
+
+ {include file='template/shopcartadvanced' /}
+
+
+</form>
+</body>
+</html>

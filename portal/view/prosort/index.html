@@ -1,0 +1,65 @@
+{extend name="template/base" /}
+{block name="content"}
+<script type="text/javascript" src="__LIB__/simplecart/simpleCart.js"></script>
+
+
+
+<div class="page-container">
+    
+    <div class="cl pd-5 bg-1 bk-gray">
+        <span class="l">
+          
+
+			
+        </span>
+        <span class="r pt-5 pr-5">
+            共有数据 ：<strong>{$count}</strong> 条
+        </span>
+    </div>
+		
+		<div class="four steps">
+  <span class="step">
+	{if $parentid eq "0"}
+	首页
+	{else}
+		 <ul><li>..
+<a href="{:\\think\\Url::build('Prosort/index',['prosortid'=>$prosort_parent.id])}">{$prosort_parent.title}</a>
+  </li>
+  </ul>
+	
+	{/if}
+</span>
+  <span class="step">
+  <ul><li>
+<a href="{:\\think\\Url::build('Prosort/index',['prosortid'=>$currprosortls.id])}">{$currprosortls.title}</a>
+  </li>
+  </ul>
+  </span>
+ <span class="disabled step">
+
+ <ul>
+ {volist name="childprosortls" id="childprosort"}<li>
+<a href="{:\\think\\Url::build('Prosort/index',['prosortid'=>$childprosort.id])}">{$childprosort.title}</a>
+<hr>
+    </li>
+  {/volist}
+  </ul>
+</span>
+ 
+</div>
+
+
+	
+
+
+      {include file='template/shopcart' /}
+        {volist name="list" id="vo"}
+       
+            {include file="td" /}
+           
+        
+        {/volist}
+     
+    <div class="page-bootstrap">{$page}</div>
+</div>
+{/block}

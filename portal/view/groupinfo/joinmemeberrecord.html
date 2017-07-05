@@ -1,0 +1,46 @@
+{extend name="template/base" /}
+{block name="nav"}{/block}
+{block name="content"}
+<div class="page-container">
+    <form class="form form-horizontal" id="form" method="post" action="{:\\think\\Request::instance()->baseUrl()}">
+	
+       {volist name="list" id="vo"}
+		 <div class="row cl">
+            
+			 
+       <table>
+       <tr>
+		<td>记录进程：{if $vo.status eq 1}正常{/if}{if $vo.status eq 0}关闭{/if}</td>
+		<td>申请状态：{if $vo.substatus eq 0}申请中{/if}{if $vo.substatus eq 1}成功{/if}{if $vo.substatus eq 2}失败{/if}</td>
+		<td></td>
+       </tr>
+       </table>
+          
+        
+			
+        </div>
+	 {/volist}
+       
+
+     
+		
+		
+
+    </form>
+</div>
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__LIB__/Validform/5.3.2/Validform.min.js"></script>
+<script>
+    $(function () {
+        $("#form").Validform({
+            tiptype:2,
+            ajaxPost:true,
+            showAllError:true,
+            callback:function(ret){
+                ajax_progress(ret);
+            }
+        });
+    })
+</script>
+{/block}
